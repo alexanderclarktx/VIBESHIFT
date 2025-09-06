@@ -13,6 +13,7 @@ export type LaxElement<E extends HTMLElement = HTMLElement, S extends {} = {}> =
 }
 
 export type LaxElementProps<LE extends LaxElement> = {
+  id?: string
   style?: Partial<CSS>
   update?: LaxUpdate<LE["e"], LE["state"]>
   state: LE["state"]

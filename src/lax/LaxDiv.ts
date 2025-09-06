@@ -13,6 +13,8 @@ export type LaxDiv<S extends {}> = LaxElement<HTMLDivElement, S>
 export const LaxDiv = <S extends {}>(props: LaxElementProps<LaxDiv<S>>, input: boolean = false): LaxDiv<S> => {
   const div = document.createElement(input ? "input" : "div")
 
+  if (props.id) div.id = props.id
+
   Object.assign(div.style, defaults)
   Object.assign(div.style, props.style)
 

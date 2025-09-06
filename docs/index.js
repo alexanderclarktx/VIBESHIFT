@@ -60,6 +60,8 @@ var defaults = {
 };
 var LaxDiv = (props, input = false) => {
   const div = document.createElement(input ? "input" : "div");
+  if (props.id)
+    div.id = props.id;
   Object.assign(div.style, defaults);
   Object.assign(div.style, props.style);
   div.oncontextmenu = (e) => e.preventDefault();
@@ -253,6 +255,7 @@ var app = Lax({
   justSent: false
 });
 var spotify = LaxDiv({
+  id: "embed-iframe",
   state: {},
   style: {
     width: "100%",
@@ -261,7 +264,6 @@ var spotify = LaxDiv({
     position: "relative"
   }
 });
-spotify.e.id = "embed-iframe";
 var wrapper = LaxDiv({
   state: {},
   style: {

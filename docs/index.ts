@@ -26,6 +26,7 @@ const app = Lax<VibeShiftState>({
 })
 
 const spotify = LaxDiv({
+  id: "embed-iframe",
   state: {},
   style: {
     width: "100%",
@@ -34,7 +35,6 @@ const spotify = LaxDiv({
     position: "relative"
   }
 })
-spotify.e.id = "embed-iframe"
 
 const wrapper = LaxDiv({
   state: {},
