@@ -16,7 +16,7 @@ export type CSS = Partial<{
   flexDirection: "row" | "column" | "row-reverse" | "column-reverse"
   float: "left" | "right" | "none"
   fontFamily: "Courier New" | "Arial"
-  fontSize: `${number}px`
+  fontSize: `${number}px` | `${number}em`
   fontWeight: "normal" | "bold" | "bolder" | "lighter"
   height: `${number}px` | `${number}%` | "auto" | `${number}vh` | `${number}dvh`
   justifyContent: "center" | "flex-start" | "flex-end" | "space-between" | "space-around"

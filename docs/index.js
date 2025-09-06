@@ -127,7 +127,7 @@ var ChatInput = () => {
       minHeight: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
-      fontSize: "20px",
+      fontSize: "2em",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
