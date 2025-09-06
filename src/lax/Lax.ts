@@ -3,6 +3,7 @@ import { KeyBuffer, LaxElement } from "vibeshift"
 export type Lax<State extends {} = {}> = {
   state: State
   elements: LaxElement[]
+  keysDown: KeyBuffer
   append: (...element: LaxElement[]) => boolean
 }
 
@@ -10,12 +11,12 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
 
   let ready = false
 
-  const bufferDown = KeyBuffer()
   const bufferUp = KeyBuffer()
 
   const lax: Lax<State> = {
     state,
     elements: [],
+    keysDown: KeyBuffer(),
     append: (element: LaxElement) => {
       document.body.appendChild(element.e)
       lax.elements.push(element)
@@ -44,15 +45,15 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     }
 
     for (const element of lax.elements) {
-      element.update?.(element.e, element.state)
+      element.update?.(element.e, lax)
 
       if (element.children) {
         for (const child of element.children) {
-          child.update?.(child.e, child.state)
+          child.update?.(child.e, lax)
         }
       }
 
-      
+
     }
   }
 
@@ -64,8 +65,8 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
       // if (charactersPreventDefault.has(key)) event.preventDefault()
 
       // add to buffer
-      if (!bufferDown.get(key)) {
-        bufferDown.push({ key, hold: 0 })
+      if (!lax.keysDown.get(key)) {
+        lax.keysDown.push({ key, hold: 0 })
       }
     }
   })

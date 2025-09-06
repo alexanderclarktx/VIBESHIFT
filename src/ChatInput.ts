@@ -30,6 +30,7 @@ export const ChatInput = () => {
       whiteSpace: "pre-line",
     },
     update: () => {
+      // conso
       // chatInput.e.textContent = chatInput.state.text
 
       // console.log(chatInput.state.text)

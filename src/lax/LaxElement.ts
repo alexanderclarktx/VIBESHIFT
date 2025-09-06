@@ -1,4 +1,4 @@
-import { CSS } from "vibeshift"
+import { CSS, Lax } from "vibeshift"
 
 export type LaxElement<E extends HTMLElement = HTMLElement, S extends {} = {}> = {
   e: E
@@ -24,4 +24,4 @@ export type LaxElementProps<LE extends LaxElement> = {
   children?: LaxElement[]
 }
 
-export type LaxUpdate<E extends HTMLElement, S extends {}> = (e: E, state: S) => void
+export type LaxUpdate<E extends HTMLElement, S extends {}> = (e: E, lax: Lax) => void
