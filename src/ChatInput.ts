@@ -16,10 +16,10 @@ export const ChatInput = () => {
       alignItems: "center",
       border: "2px solid black",
       borderRadius: "8px",
-      bottom: "100px",
-      left: "50%",
-      transform: "translate(-50%)",
-      width: "90%",
+      // bottom: "50px",
+      // left: "50%",
+      transform: "translate(0%)",
+      width: "94%", // TODO
       minHeight: "5%",
       wordBreak: "break-all",
       paddingLeft: "10px",
@@ -28,7 +28,9 @@ export const ChatInput = () => {
       fontSize: "20px",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
-      display: "flex"
+      display: "flex",
+      position: "relative",
+      // alignSelf: "flex-end"
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text

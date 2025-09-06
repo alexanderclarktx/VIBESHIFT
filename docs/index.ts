@@ -18,8 +18,10 @@ const wrapper = LaxDiv({
     width: "96%",
     height: "96%",
     left: "50%",
-    // bottom: "%",
-    transform: "translate(-50%)"
+    top: "0px",
+    transform: "translate(-50%)",
+    flexDirection: "column",
+    display: "flex"
   },
   children: [ ChatInput()]
 })

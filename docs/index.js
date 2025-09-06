@@ -110,10 +110,8 @@ var ChatInput = () => {
       alignItems: "center",
       border: "2px solid black",
       borderRadius: "8px",
-      bottom: "100px",
-      left: "50%",
-      transform: "translate(-50%)",
-      width: "90%",
+      transform: "translate(0%)",
+      width: "94%",
       minHeight: "5%",
       wordBreak: "break-all",
       paddingLeft: "10px",
@@ -122,7 +120,8 @@ var ChatInput = () => {
       fontSize: "20px",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
-      display: "flex"
+      display: "flex",
+      position: "relative"
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text;
@@ -148,7 +147,10 @@ var wrapper = LaxDiv({
     width: "96%",
     height: "96%",
     left: "50%",
-    transform: "translate(-50%)"
+    top: "0px",
+    transform: "translate(-50%)",
+    flexDirection: "column",
+    display: "flex"
   },
   children: [ChatInput()]
 });
