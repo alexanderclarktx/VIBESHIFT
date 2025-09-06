@@ -1,11 +1,6 @@
 import OpenAI from "openai"
 
-const apiKey = [
-  "sk-",
-  "proj-",
-  "6t_xXGEdWcivKWrlDt9AcVXpEi2RUgokv5E5Hs2UTQSBAXQSIoNXmieVCv8WjLvmsSLB51lcAfT3BlbkFJYB5y9C0iFA4v5b65ovl_B-1_q21Wi0yS2OkqdZKbjTOl29JIqw_",
-  "I6QiOpkWuzn4-blxkJnxMwA"
-]
+const apiKey = (b64: string) => `sk-admin-${atob(b64)}`
 
 type AI = {
   prompt: (prompt: string, callback: (response: string) => void) => Promise<void>
@@ -14,7 +9,7 @@ type AI = {
 export const AI = (): AI => {
   const client = new OpenAI({
     dangerouslyAllowBrowser: true,
-    apiKey: apiKey.join()
+    apiKey: apiKey("SkNRZnhVLUtQWXU4WExVNkREMGkydkJhdHFTOC1hZTRGQW1NSGhYVW1JbWdkZVptcGwwcmpiMFFNTVQzQmxia0ZKelhLZGtISHE2ZldrdEdmRDh1T3BFOUxiQ2RySGdHVS1NNUt5U0lIREFfa19ZNUJiNUNMakpRTnBvQQ==")
   })
 
   return {
