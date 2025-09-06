@@ -28,20 +28,19 @@ const app = Lax<VibeShiftState>({
   justSent: false
 })
 
-const spotify = LaxDiv({
+const music = LaxDiv({
   // id: "embed-iframe",
   state: {},
   style: {
     width: "100%",
-    height: "200px",
+    height: "150px",
     border: "2px solid green",
     position: "relative",
     pointerEvents: "auto",
-    touchAction: "manipulation"
+    touchAction: "auto",
+    zIndex: -1
   }
 })
-
-spotify.e.setAttribute("allow", "autoplay; encrypted-media;")
 
 const wrapper = LaxDiv({
   state: {},
@@ -50,9 +49,9 @@ const wrapper = LaxDiv({
     position: "absolute",
     maxWidth: "94%",
     width: "100%",
-    height: "96%",
+    height: "calc(96% - 104px)",
     left: "50%",
-    top: "2%",
+    top: "110px",
     right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
@@ -60,8 +59,7 @@ const wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  // children: [ChatHistory(), ChatInput(), ChatSend()]
-  // children: [ChatHistory()]
+  children: [ChatHistory(), ChatInput(), ChatSend()]
 })
 
-// app.append(wrapper)
+app.append(wrapper)

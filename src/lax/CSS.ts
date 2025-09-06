@@ -19,7 +19,7 @@ export type CSS = Partial<{
   fontFamily: "Courier New" | "Arial"
   fontSize: `${number}px` | `${number}em`
   fontWeight: "normal" | "bold" | "bolder" | "lighter"
-  height: `${number}px` | `${number}%` | "auto" | `${number}vh` | `${number}dvh`
+  height: `${number}px` | `${number}%` | "auto" | `${number}vh` | `${number}dvh` | `calc(${string})`
   justifyContent: "center" | "flex-start" | "flex-end" | "space-between" | "space-around"
   left: `${number}%` | `${number}px` | `${number}dvh`
   lineHeight: `${number}px`
@@ -50,7 +50,7 @@ export type CSS = Partial<{
   textDecorationStyle: "solid" | "dashed" | "dotted"
   textShadow: `${number}px ${number}px ${number}px rgba(${number}, ${number}, ${number}, ${number})`
   top: `${number}%` | `${number}px` | `${number}dvh`
-  touchAction: "none" | "pan-x" | "pan-y" | "pan-x pan-y" | "manipulation"
+  touchAction: "none" | "pan-x" | "pan-y" | "pan-x pan-y" | "manipulation" | "auto"
   transform: `translate(${number}%)` | `translate(${number}%, ${number}%)`
   userSelect: "none" | "auto" | "text" | "all"
   visibility: "visible" | "hidden"
