@@ -239,11 +239,29 @@ var ChatHistory = () => {
   return chatHistory;
 };
 // docs/index.ts
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  const element = document.getElementById("embed-iframe");
+  const options = {
+    uri: "spotify:episode:7makk4oTQel546B0PZlDM5"
+  };
+  const callback = (EmbedController) => {};
+  IFrameAPI.createController(element, options, callback);
+};
 var app = Lax({
   messages: [],
   textBuffer: "",
   justSent: false
 });
+var spotify = LaxDiv({
+  state: {},
+  style: {
+    width: "100%",
+    height: "100px",
+    border: "2px solid green",
+    position: "relative"
+  }
+});
+spotify.e.id = "embed-iframe";
 var wrapper = LaxDiv({
   state: {},
   style: {
@@ -260,6 +278,6 @@ var wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  children: [ChatHistory(), ChatInput(), ChatSend()]
+  children: [spotify, ChatHistory(), ChatInput(), ChatSend()]
 });
 app.append(wrapper);
