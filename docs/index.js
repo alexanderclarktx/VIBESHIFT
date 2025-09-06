@@ -165,7 +165,11 @@ var ChatSend = () => {
       width: "10%",
       right: "0%",
       height: "6%",
-      minHeight: "6%"
+      minHeight: "6%",
+      textAlign: "center",
+      lineHeight: "30px",
+      color: "green",
+      fontSize: "20px"
     },
     update: (_, lax) => {
       if (!state)
@@ -182,6 +186,7 @@ var ChatSend = () => {
       }
     }
   });
+  send.e.textContent = "↑";
   return send;
 };
 // src/ChatHistory.ts
@@ -242,31 +247,10 @@ var ChatHistory = () => {
   return chatHistory;
 };
 // docs/index.ts
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  const element = document.getElementById("embed-iframe");
-  const options = {
-    width: "100%",
-    height: "100px",
-    uri: "spotify:track:15uooxhgintp3YZq649IEr"
-  };
-  IFrameAPI.createController(element, options, () => {});
-};
 var app = Lax({
   messages: [],
   textBuffer: "",
   justSent: false
-});
-var music = LaxDiv({
-  state: {},
-  style: {
-    width: "100%",
-    height: "150px",
-    border: "2px solid green",
-    position: "relative",
-    pointerEvents: "auto",
-    touchAction: "auto",
-    zIndex: -1
-  }
 });
 var wrapper = LaxDiv({
   state: {},

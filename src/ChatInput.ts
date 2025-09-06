@@ -12,8 +12,6 @@ export const ChatInput = () => {
       border: "2px solid black",
       borderRadius: "8px",
       bottom: "0%",
-      // left: "50%",
-      // transform: "translate(-50%)",
       width: "80%",
       height: "5%",
       wordBreak: "break-all",
@@ -22,11 +20,9 @@ export const ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      // whiteSpace: "pre-line",
       touchAction: "manipulation",
       paddingLeft: "4px",
       paddingRight: "4px"
-      // flexDirection: "column"
     },
     update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
       const enter = lax.keysDown.get("enter")
@@ -65,7 +61,11 @@ export const ChatSend = () => {
       width: "10%",
       right: "0%",
       height: "6%",
-      minHeight: "6%"
+      minHeight: "6%",
+      textAlign: "center",
+      lineHeight: "30px",
+      color: "green",
+      fontSize: "20px"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       if (!state) state = lax.state
@@ -81,6 +81,8 @@ export const ChatSend = () => {
       }
     }
   })
+
+  send.e.textContent = "↑"
 
   return send
 }
