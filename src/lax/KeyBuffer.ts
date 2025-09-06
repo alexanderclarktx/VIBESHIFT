@@ -7,6 +7,7 @@ export type KeyBuffer = {
   clear: () => void
   push: (km: KeyInfo) => void
   remove: (key: string) => void
+  updateHold: () => void
 }
 
 export const KeyBuffer = (b?: KeyInfo[]): KeyBuffer => {
@@ -27,5 +28,10 @@ export const KeyBuffer = (b?: KeyInfo[]): KeyBuffer => {
     remove: (key: string) => {
       buffer = buffer.filter((b) => b.key !== key)
     },
+    updateHold: () => {
+      for (const b of buffer) {
+        b.hold += 1
+      }
+    }
   }
 }

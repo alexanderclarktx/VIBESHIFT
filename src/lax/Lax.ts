@@ -61,12 +61,15 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     if (document.hasFocus()) {
       let key = event.key.toLowerCase()
 
+      console.log("event listener", key)
+
       // prevent defaults
       // if (charactersPreventDefault.has(key)) event.preventDefault()
 
       // add to buffer
       if (!lax.keysDown.get(key)) {
         lax.keysDown.push({ key, hold: 0 })
+        console.log("pushed", key)
       }
     }
   })

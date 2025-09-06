@@ -29,7 +29,14 @@ export const ChatInput = () => {
       display: "flex",
       whiteSpace: "pre-line",
     },
-    update: () => {
+    update: (_, lax) => {
+      // console.log("abc")
+      const enter = lax.keysDown.get("enter")
+      // console.log(down.length)
+      if (enter) {
+        console.log(enter)
+      }
+      
       // conso
       // chatInput.e.textContent = chatInput.state.text
 
