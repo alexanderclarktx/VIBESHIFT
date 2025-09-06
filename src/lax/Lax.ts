@@ -24,7 +24,7 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     requestAnimationFrame(update)
 
     if (!ready && document.body) {
-      document.body.style.backgroundColor = "black"
+      document.body.style.backgroundColor = "white"
       document.body.style.overflowX = "hidden"
       document.body.style.overflowY = "hidden"
       ready = true
