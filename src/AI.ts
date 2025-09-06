@@ -2,9 +2,7 @@ import OpenAI from "openai"
 
 const apiKey = [
   "sk-",
-  "proj-",
-  "6t_xXGEdWcivKWrlDt9AcVXpEi2RUgokv5E5Hs2UTQSBAXQSIoNXmieVCv8WjLvmsSLB51lcAfT3BlbkFJYB5y9C0iFA4v5b65ovl_B-1_q21Wi0yS2OkqdZKbjTOl29JIqw_",
-  "I6QiOpkWuzn4-blxkJnxMwA"
+  "proj-"
 ]
 
 type AI = {
