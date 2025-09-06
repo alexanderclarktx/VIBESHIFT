@@ -1,5 +1,6 @@
 export type CSS = Partial<{
   alignItems: "center" | "flex-start" | "flex-end" | "stretch"
+  alignSelf: "flex-end"
   backgroundColor: LaxColor
   border: string
   borderBottom: string
@@ -53,7 +54,7 @@ export type CSS = Partial<{
   userSelect: "none" | "auto" | "text" | "all"
   visibility: "visible" | "hidden"
   whiteSpace: "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line"
-  width: `${number}px` | `${number}%` | "auto"
+  width: `${number}px` | `${number}%` | "auto" | `${number}vw`
   wordBreak: "normal" | "break-word" | "break-all"
   zIndex: number
 }>

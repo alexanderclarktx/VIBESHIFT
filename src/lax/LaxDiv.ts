@@ -10,8 +10,8 @@ const defaults: CSS = {
 
 export type LaxDiv<S extends {}> = LaxElement<HTMLDivElement, S>
 
-export const LaxDiv = <S extends {}>(props: LaxElementProps<LaxDiv<S>>): LaxDiv<S> => {
-  const div = document.createElement("div")
+export const LaxDiv = <S extends {}>(props: LaxElementProps<LaxDiv<S>>, input: boolean = false): LaxDiv<S> => {
+  const div = document.createElement(input ? "input" : "div")
 
   Object.assign(div.style, defaults)
   Object.assign(div.style, props.style)
@@ -32,5 +32,11 @@ export const LaxDiv = <S extends {}>(props: LaxElementProps<LaxDiv<S>>): LaxDiv<
     if (onPointerOut) div.onpointerout = onPointerOut
   }
 
-  return { e: div, update: props.update, state: props.state, callbacks: props.callbacks }
+  return {
+    e: div,
+    update: props.update,
+    state: props.state,
+    callbacks: props.callbacks,
+    children: props.children ?? []
+  }
 }
