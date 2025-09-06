@@ -4,12 +4,16 @@ export type Message = { from: string, text: string }
 
 // @ts-expect-error
 window.onSpotifyIframeApiReady = (IFrameAPI: any) => {
-  const element = document.getElementById('embed-iframe');
+  const element = document.getElementById('embed-iframe')
+
   const options = {
+    wdit
       uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
-    };
-  const callback = (EmbedController: any) => {};
-  IFrameAPI.createController(element, options, callback);
+  };
+
+  const callback = (EmbedController: any) => { }
+
+  IFrameAPI.createController(element, options, callback)
 };
 
 export type VibeShiftState = {
