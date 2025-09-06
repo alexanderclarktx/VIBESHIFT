@@ -1,18 +1,12 @@
 import { VibeShiftState } from "docs"
 import { Lax, LaxDiv } from "vibeshift"
 
-type ChatInputState = {
-  // text: string,
-  // opened: boolean
-}
+type ChatInputState = {}
 
 export const ChatInput = () => {
 
   const chatInput = LaxDiv<ChatInputState>({
-    state: {
-      // text: "hello world",
-      // opened: false
-    },
+    state: {},
     style: {
       alignItems: "center",
       border: "2px solid black",
