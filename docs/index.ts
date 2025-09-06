@@ -2,7 +2,7 @@ import { Lax, LaxDiv, ChatInput } from "vibeshift"
 
 type Chat = { from: string, text: string }
 
-type VibeShiftState = {
+export type VibeShiftState = {
   messages: Chat[]
 }
 

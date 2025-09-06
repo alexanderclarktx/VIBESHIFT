@@ -133,10 +133,12 @@ var ChatInput = () => {
       display: "flex",
       whiteSpace: "pre-line"
     },
-    update: (_, lax) => {
+    update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
       if (enter && !enter.hold) {
         console.log(enter);
+        lax.state.messages.push({ from: "user", text: e.value });
+        console.log("messages", lax.state.messages);
       }
     }
   }, true);
