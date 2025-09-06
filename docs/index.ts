@@ -1,9 +1,9 @@
 import { Lax, LaxDiv, ChatInput, ChatHistory } from "vibeshift"
 
-type Chat = { from: string, text: string }
+export type Message = { from: string, text: string }
 
 export type VibeShiftState = {
-  messages: Chat[]
+  messages: Message[]
 }
 
 const lax = Lax<VibeShiftState>({

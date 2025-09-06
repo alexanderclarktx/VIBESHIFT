@@ -127,7 +127,7 @@ var ChatInput = () => {
       minHeight: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
-      fontSize: "2em",
+      fontSize: "1em",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
@@ -137,10 +137,8 @@ var ChatInput = () => {
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
       if (enter && !enter.hold) {
-        console.log(enter);
         lax.state.messages.push({ from: "user", text: e.value });
         e.value = "";
-        console.log("messages", lax.state.messages);
       }
     },
     callbacks: {
@@ -152,10 +150,23 @@ var ChatInput = () => {
   return chatInput;
 };
 // src/ChatHistory.ts
-var ChatHistory = () => LaxDiv({
-  state: {},
-  style: {}
-});
+var ChatHistory = () => {
+  let count = 0;
+  const chatHistory = LaxDiv({
+    state: {},
+    style: {},
+    update: (_, lax) => {
+      const { messages } = lax.state;
+      if (count !== messages.length) {
+        for (let i = count;i < messages.length; i++) {
+          console.log("new", messages[i]);
+        }
+      }
+      count = messages.length;
+    }
+  });
+  return chatHistory;
+};
 // docs/index.ts
 var lax = Lax({
   messages: []
