@@ -152,6 +152,7 @@ var ChatInput = () => {
   return chatInput;
 };
 var ChatSend = () => {
+  let state = undefined;
   const send = LaxDiv({
     state: {},
     style: {
@@ -162,12 +163,17 @@ var ChatSend = () => {
       right: "0%",
       minHeight: "5.5%"
     },
+    update: (_, lax) => {
+      if (!state)
+        state = lax.state;
+    },
     callbacks: {
       onPointerDown: () => {
-        const { textBuffer } = app.state;
-        if (textBuffer) {
-          app.state.messages.push({ from: "user", text: textBuffer });
-          app.state.justSent = true;
+        if (!state)
+          return;
+        if (state.textBuffer) {
+          state.messages.push({ from: "user", text: state.textBuffer });
+          state.justSent = true;
         }
       }
     }
@@ -256,6 +262,3 @@ var wrapper = LaxDiv({
   children: [ChatHistory(), ChatInput(), ChatSend()]
 });
 app.append(wrapper);
-export {
-  app
-};
