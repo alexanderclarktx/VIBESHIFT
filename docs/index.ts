@@ -7,14 +7,13 @@ window.onSpotifyIframeApiReady = (IFrameAPI: any) => {
   const element = document.getElementById('embed-iframe')
 
   const options = {
-    wdit
-      uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
-  };
+    width: "100%",
+    height: "100px",
+    uri: "spotify:track:15uooxhgintp3YZq649IEr"
+  }
 
-  const callback = (EmbedController: any) => { }
-
-  IFrameAPI.createController(element, options, callback)
-};
+  IFrameAPI.createController(element, options, () => {})
+}
 
 export type VibeShiftState = {
   messages: Message[]

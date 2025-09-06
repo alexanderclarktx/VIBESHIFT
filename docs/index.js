@@ -244,10 +244,11 @@ var ChatHistory = () => {
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
   const element = document.getElementById("embed-iframe");
   const options = {
-    uri: "spotify:episode:7makk4oTQel546B0PZlDM5"
+    width: "100%",
+    height: "100px",
+    uri: "spotify:track:15uooxhgintp3YZq649IEr"
   };
-  const callback = (EmbedController) => {};
-  IFrameAPI.createController(element, options, callback);
+  IFrameAPI.createController(element, options, () => {});
 };
 var app = Lax({
   messages: [],
