@@ -14,7 +14,7 @@ export const ChatInput = () => {
       bottom: "0%",
       // left: "50%",
       // transform: "translate(-50%)",
-      width: "84%",
+      width: "80%",
       height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
@@ -22,9 +22,11 @@ export const ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      whiteSpace: "pre-line",
+      // whiteSpace: "pre-line",
       touchAction: "manipulation",
-      flexDirection: "column"
+      paddingLeft: "4px",
+      paddingRight: "4px"
+      // flexDirection: "column"
     },
     update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
       const enter = lax.keysDown.get("enter")
@@ -62,7 +64,8 @@ export const ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      height: "6%"
+      height: "6%",
+      minHeight: "6%"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       if (!state) state = lax.state

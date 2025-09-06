@@ -45,13 +45,13 @@ const music = LaxDiv({
 const wrapper = LaxDiv({
   state: {},
   style: {
-    // alignItems: "flex-end",
     position: "absolute",
     maxWidth: "94%",
     width: "100%",
-    height: "calc(96% - 104px)",
+    height: "calc(96% - 110px)",
+    // flex: 1,
     left: "50%",
-    top: "110px",
+    top: "120px",
     right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",

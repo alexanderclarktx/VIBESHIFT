@@ -123,7 +123,7 @@ var ChatInput = () => {
       border: "2px solid black",
       borderRadius: "8px",
       bottom: "0%",
-      width: "84%",
+      width: "80%",
       height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
@@ -131,9 +131,9 @@ var ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      whiteSpace: "pre-line",
       touchAction: "manipulation",
-      flexDirection: "column"
+      paddingLeft: "4px",
+      paddingRight: "4px"
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
@@ -164,7 +164,8 @@ var ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      height: "6%"
+      height: "6%",
+      minHeight: "6%"
     },
     update: (_, lax) => {
       if (!state)
@@ -273,9 +274,9 @@ var wrapper = LaxDiv({
     position: "absolute",
     maxWidth: "94%",
     width: "100%",
-    height: "calc(96% - 104px)",
+    height: "calc(96% - 110px)",
     left: "50%",
-    top: "110px",
+    top: "120px",
     right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
