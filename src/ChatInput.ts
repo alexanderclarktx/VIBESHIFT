@@ -1,7 +1,9 @@
 import { VibeShiftState } from "docs"
-import { Lax, LaxDiv } from "vibeshift"
+import { AI, Lax, LaxDiv } from "vibeshift"
 
 type ChatInputState = {}
+
+const ai = AI()
 
 export const ChatInput = () => {
 
@@ -71,12 +73,17 @@ export const ChatSend = () => {
       if (!state) state = lax.state
     },
     callbacks: {
-      onPointerDown: () => {
+      onPointerDown: async () => {
         if (!state) return
 
         if (state.textBuffer) {
           state.messages.push({ from: "user", text: state.textBuffer })
           state.justSent = true
+
+          console.log("WANT TO PROMPT")
+          ai.prompt(state.textBuffer, (response: string) => {
+            console.log("RESPONSE", response)
+          })
         }
       }
     }
