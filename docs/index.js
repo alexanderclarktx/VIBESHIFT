@@ -122,7 +122,7 @@ var ChatInput = () => {
       borderRadius: "8px",
       bottom: "0%",
       width: "84%",
-      minHeight: "5%",
+      height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
       fontSize: "1em",
@@ -138,6 +138,7 @@ var ChatInput = () => {
       if (lax.state.justSent) {
         e.value = "";
         lax.state.justSent = false;
+        e.blur();
         return;
       }
       if (enter && !enter.hold) {
@@ -161,7 +162,7 @@ var ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      minHeight: "5.5%"
+      height: "6%"
     },
     update: (_, lax) => {
       if (!state)
