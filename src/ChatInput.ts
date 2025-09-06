@@ -19,19 +19,15 @@ export const ChatInput = () => {
       bottom: "0%",
       left: "50%",
       transform: "translate(-50%)",
-      width: "100%", // TODO
+      width: "100%",
       minHeight: "5%",
       wordBreak: "break-all",
-      // paddingLeft: "10px",
-      // paddingRight: "10px",
       fontFamily: "Courier New",
       fontSize: "20px",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      // position: "relative",
       whiteSpace: "pre-line",
-      // alignSelf: "flex-end"
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text
