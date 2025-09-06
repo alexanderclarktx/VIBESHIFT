@@ -265,6 +265,7 @@ var spotify = LaxDiv({
     position: "relative"
   }
 });
+spotify.e.setAttribute("allow", "autoplay; encrypted-media;");
 var wrapper = LaxDiv({
   state: {},
   style: {

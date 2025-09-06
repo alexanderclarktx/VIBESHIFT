@@ -39,6 +39,8 @@ const spotify = LaxDiv({
   }
 })
 
+spotify.e.setAttribute("allow", "autoplay; encrypted-media;")
+
 const wrapper = LaxDiv({
   state: {},
   style: {
