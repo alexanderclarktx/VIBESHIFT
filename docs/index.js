@@ -121,11 +121,12 @@ var ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      position: "relative"
+      position: "relative",
+      whiteSpace: "pre-line"
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text;
-      console.log("abc");
+      console.log(chatInput.state.text);
     },
     callbacks: {
       onPointerDown: () => {

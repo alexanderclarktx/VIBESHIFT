@@ -30,18 +30,17 @@ export const ChatInput = () => {
       pointerEvents: "auto",
       display: "flex",
       position: "relative",
-      // alignSelf: "flex-end"
+      whiteSpace: "pre-line"
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text
-      console.log("abc")
 
+      console.log(chatInput.state.text)
     },
     callbacks: {
       onPointerDown: () => {
         chatInput.state.opened = true
-      },
-
+      }
     }
   }, true)
 
