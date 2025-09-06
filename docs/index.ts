@@ -1,5 +1,4 @@
-import { ChatInput } from "src/ChatInput"
-import { Lax, LaxDiv } from "vibeshift"
+import { Lax, LaxDiv, ChatInput } from "vibeshift"
 
 type Chat = { from: string, text: string }
 
