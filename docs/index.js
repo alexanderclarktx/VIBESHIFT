@@ -103,10 +103,7 @@ var KeyBuffer = (b) => {
 // src/ChatInput.ts
 var ChatInput = () => {
   const chatInput = LaxDiv({
-    state: {
-      text: "hello world",
-      opened: false
-    },
+    state: {},
     style: {
       alignItems: "center",
       border: "2px solid black",
@@ -124,14 +121,9 @@ var ChatInput = () => {
       display: "flex",
       whiteSpace: "pre-line"
     },
-    update: () => {
-      chatInput.e.textContent = chatInput.state.text;
-      console.log(chatInput.state.text);
-    },
+    update: () => {},
     callbacks: {
-      onPointerDown: () => {
-        chatInput.state.opened = true;
-      }
+      onPointerDown: () => {}
     }
   }, true);
   return chatInput;

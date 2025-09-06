@@ -1,16 +1,16 @@
 import { LaxDiv } from "vibeshift"
 
 type ChatInputState = {
-  text: string,
-  opened: boolean
+  // text: string,
+  // opened: boolean
 }
 
 export const ChatInput = () => {
 
   const chatInput = LaxDiv<ChatInputState>({
     state: {
-      text: "hello world",
-      opened: false
+      // text: "hello world",
+      // opened: false
     },
     style: {
       alignItems: "center",
@@ -30,13 +30,14 @@ export const ChatInput = () => {
       whiteSpace: "pre-line",
     },
     update: () => {
-      chatInput.e.textContent = chatInput.state.text
+      // chatInput.e.textContent = chatInput.state.text
 
-      console.log(chatInput.state.text)
+      // console.log(chatInput.state.text)
+      // chatInput.e.input
     },
     callbacks: {
       onPointerDown: () => {
-        chatInput.state.opened = true
+        // chatInput.state.opened = true
       }
     }
   }, true)
