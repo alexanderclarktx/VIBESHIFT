@@ -145,6 +145,8 @@ var ChatInput = () => {
   }, true);
   return chatInput;
 };
+// src/ChatHistory.ts
+var ChatHistory = LaxDiv({});
 // docs/index.ts
 var lax = Lax({
   messages: []
