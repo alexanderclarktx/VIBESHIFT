@@ -132,7 +132,8 @@ var ChatInput = () => {
       pointerEvents: "auto",
       display: "flex",
       whiteSpace: "pre-line",
-      touchAction: "manipulation"
+      touchAction: "manipulation",
+      flexDirection: "column"
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
@@ -150,15 +151,38 @@ var ChatInput = () => {
   return chatInput;
 };
 // src/ChatHistory.ts
+var ChatBubble = (msg) => {
+  const div = LaxDiv({
+    state: {},
+    style: {
+      fontSize: "2em",
+      border: "2px solid blue",
+      borderRadius: "8px"
+    }
+  });
+  div.e.textContent = msg.text;
+  return div;
+};
 var ChatHistory = () => {
   let count = 0;
   const chatHistory = LaxDiv({
     state: {},
-    style: {},
+    style: {
+      border: "2px solid green",
+      borderRadius: "8px",
+      width: "200px",
+      height: "200px",
+      display: "flex",
+      flex: 0.9,
+      left: "0px",
+      position: "relative"
+    },
     update: (_, lax) => {
       const { messages } = lax.state;
       if (count !== messages.length) {
         for (let i = count;i < messages.length; i++) {
+          const bubble = ChatBubble(messages[i]);
+          chatHistory.e.appendChild(bubble.e);
           console.log("new", messages[i]);
         }
       }
@@ -174,12 +198,11 @@ var lax = Lax({
 var wrapper = LaxDiv({
   state: {},
   style: {
-    alignItems: "flex-end",
     position: "absolute",
     width: "96%",
     height: "96%",
     left: "50%",
-    top: "0px",
+    top: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",

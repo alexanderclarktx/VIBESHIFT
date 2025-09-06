@@ -13,12 +13,12 @@ const lax = Lax<VibeShiftState>({
 const wrapper = LaxDiv({
   state: {},
   style: {
-    alignItems: "flex-end",
+    // alignItems: "flex-end",
     position: "absolute",
     width: "96%",
     height: "96%",
     left: "50%",
-    top: "0px",
+    top: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",
@@ -26,6 +26,7 @@ const wrapper = LaxDiv({
     touchAction: "manipulation"
   },
   children: [ChatHistory(), ChatInput()]
+  // children: [ChatHistory()]
 })
 
 lax.append(wrapper)

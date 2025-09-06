@@ -7,11 +7,15 @@ const ChatBubble = (msg: Message) => {
     style: {
       fontSize: "2em",
       border: "2px solid blue",
-      borderRadius: "8px"
+      borderRadius: "8px",
+      // display: "flex",
+      // flex: 1
     }
   })
 
   div.e.textContent = msg.text
+
+  return div
 }
 
 export const ChatHistory = () => {
@@ -21,12 +25,22 @@ export const ChatHistory = () => {
   const chatHistory = LaxDiv({
     state: {},
     style: {
-
+      border: "2px solid green",
+      borderRadius: "8px",
+      width: "200px",
+      height: "200px",
+      display: "flex",
+      flex: 0.9,
+      left: "0px",
+      position: "relative"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       const { messages } = lax.state
       if (count !== messages.length) {
         for (let i = count; i < messages.length; i++) {
+
+          const bubble = ChatBubble(messages[i])
+          chatHistory.e.appendChild(bubble.e)
           console.log("new", messages[i])
         }
       }
