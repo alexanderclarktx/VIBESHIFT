@@ -8,9 +8,10 @@ const ChatBubble = (msg: Message) => {
       fontSize: "2em",
       border: "2px solid blue",
       borderRadius: "8px",
-      position: "relative"
-      // display: "flex",
-      // flex: 1
+      position: "relative",
+      maxWidth: "80%",
+      display: "flex",
+      wordBreak: "break-word"
     }
   })
 

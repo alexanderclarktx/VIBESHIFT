@@ -160,7 +160,10 @@ var ChatBubble = (msg) => {
       fontSize: "2em",
       border: "2px solid blue",
       borderRadius: "8px",
-      position: "relative"
+      position: "relative",
+      maxWidth: "80%",
+      display: "flex",
+      wordBreak: "break-word"
     }
   });
   div.e.textContent = msg.text;
