@@ -36,11 +36,8 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     for (const element of lax.elements) {
       element.update?.(element.e, element.state)
 
-      // console.log(element)
-
       if (element.children) {
         for (const child of element.children) {
-          // console.log(child.state)
           child.update?.(child.e, child.state)
         }
       }
@@ -53,5 +50,3 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
 
   return lax
 }
-
-// const 
