@@ -19,7 +19,11 @@ const UserChatBubble = (msg: Message) => {
       marginTop: "2%",
       marginLeft: "auto",
       flexDirection: "row-reverse",
-      flexShrink: 2
+      flexShrink: 2,
+      paddingTop: "2px",
+      paddingBottom: "2px",
+      paddingLeft: "4px",
+      paddingRight: "4px"
     }
   })
 
@@ -44,7 +48,8 @@ export const ChatHistory = () => {
       left: "0px",
       position: "relative",
       alignSelf: "center",
-      flexDirection: "column"
+      flexDirection: "column",
+      overflowY: "scroll",
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       const { messages } = lax.state
