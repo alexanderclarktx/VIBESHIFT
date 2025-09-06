@@ -1,6 +1,6 @@
 export type CSS = Partial<{
   alignItems: "center" | "flex-start" | "flex-end" | "stretch"
-  alignSelf: "flex-end"
+  alignSelf: "flex-end" | "center"
   backgroundColor: LaxColor
   border: string
   borderBottom: string
@@ -14,9 +14,10 @@ export type CSS = Partial<{
   display: "block" | "inline-block" | "flex" | "inline-flex" | "none"
   flex: number | `${number} ${number} auto`
   flexDirection: "row" | "column" | "row-reverse" | "column-reverse"
+  flexShrink: 0 | 1 | 2
   float: "left" | "right" | "none"
   fontFamily: "Courier New" | "Arial"
-  fontSize: `${number}px`
+  fontSize: `${number}px` | `${number}em`
   fontWeight: "normal" | "bold" | "bolder" | "lighter"
   height: `${number}px` | `${number}%` | "auto" | `${number}vh` | `${number}dvh`
   justifyContent: "center" | "flex-start" | "flex-end" | "space-between" | "space-around"
@@ -24,7 +25,7 @@ export type CSS = Partial<{
   lineHeight: `${number}px`
   margin: `${number}px` | `${number}%` | "0 auto"
   marginBottom: `${number}px` | `${number}%` | "env(safe-area-inset-bottom)"
-  marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)"
+  marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)" | "auto"
   marginRight: `${number}px` | `${number}%` | "env(safe-area-inset-right)"
   marginTop: `${number}px` | `${number}%` | "env(safe-area-inset-top)"
   maxHeight: `${number}%` | `${number}px` | `${number}dvh`

@@ -127,20 +127,21 @@ var ChatInput = () => {
       minHeight: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
-      fontSize: "20px",
+      fontSize: "1em",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
       whiteSpace: "pre-line",
-      touchAction: "manipulation"
+      touchAction: "manipulation",
+      flexDirection: "column"
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
       if (enter && !enter.hold) {
-        console.log(enter);
-        lax.state.messages.push({ from: "user", text: e.value });
+        const { value } = e;
+        if (value)
+          lax.state.messages.push({ from: "user", text: e.value });
         e.value = "";
-        console.log("messages", lax.state.messages);
       }
     },
     callbacks: {
@@ -152,10 +153,63 @@ var ChatInput = () => {
   return chatInput;
 };
 // src/ChatHistory.ts
-var ChatHistory = () => LaxDiv({
-  state: {},
-  style: {}
-});
+var UserChatBubble = (msg) => {
+  const div = LaxDiv({
+    state: {},
+    style: {
+      fontSize: "1em",
+      border: "2px solid red",
+      backgroundColor: "rgba(255, 200, 200, 0.5)",
+      borderRadius: "8px",
+      position: "relative",
+      maxWidth: "80%",
+      display: "flex",
+      wordBreak: "break-word",
+      marginRight: "2%",
+      marginTop: "2%",
+      marginLeft: "auto",
+      flexDirection: "row-reverse",
+      flexShrink: 2,
+      paddingTop: "2px",
+      paddingBottom: "2px",
+      paddingLeft: "4px",
+      paddingRight: "4px"
+    }
+  });
+  div.e.textContent = msg.text;
+  return div;
+};
+var ChatHistory = () => {
+  let count = 0;
+  const chatHistory = LaxDiv({
+    state: {},
+    style: {
+      border: "2px solid green",
+      borderRadius: "8px",
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      flex: 0.9,
+      left: "0px",
+      position: "relative",
+      alignSelf: "center",
+      flexDirection: "column",
+      overflowY: "scroll"
+    },
+    update: (_, lax) => {
+      const { messages } = lax.state;
+      if (count !== messages.length) {
+        for (let i = count;i < messages.length; i++) {
+          const bubble = UserChatBubble(messages[i]);
+          chatHistory.e.appendChild(bubble.e);
+          console.log("new", messages[i]);
+        }
+      }
+      count = messages.length;
+    }
+  });
+  return chatHistory;
+};
 // docs/index.ts
 var lax = Lax({
   messages: []
@@ -163,12 +217,13 @@ var lax = Lax({
 var wrapper = LaxDiv({
   state: {},
   style: {
-    alignItems: "flex-end",
     position: "absolute",
-    width: "96%",
+    maxWidth: "94%",
+    width: "100%",
     height: "96%",
     left: "50%",
-    top: "0px",
+    top: "2%",
+    right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",

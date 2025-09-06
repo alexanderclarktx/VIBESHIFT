@@ -18,21 +18,23 @@ export const ChatInput = () => {
       minHeight: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
-      fontSize: "20px",
+      fontSize: "1em",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
       whiteSpace: "pre-line",
-      touchAction: "manipulation"
+      touchAction: "manipulation",
+      flexDirection: "column"
     },
     update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
       const enter = lax.keysDown.get("enter")
       if (enter && !enter.hold) {
-        console.log(enter)
 
-        lax.state.messages.push({ from: "user", text: e.value })
+        const { value } = e
+        if (value) lax.state.messages.push({ from: "user", text: e.value })
         e.value = ""
-        console.log("messages", lax.state.messages)
+
+        // console.log("messages", lax.state.messages)
       }
     },
     callbacks: {
