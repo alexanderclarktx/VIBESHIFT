@@ -131,7 +131,8 @@ var ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      whiteSpace: "pre-line"
+      whiteSpace: "pre-line",
+      touchAction: "manipulation"
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
@@ -171,7 +172,8 @@ var wrapper = LaxDiv({
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",
-    pointerEvents: "auto"
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   },
   children: [ChatHistory(), ChatInput()]
 });

@@ -23,6 +23,7 @@ export const ChatInput = () => {
       pointerEvents: "auto",
       display: "flex",
       whiteSpace: "pre-line",
+      touchAction: "manipulation"
     },
     update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
       const enter = lax.keysDown.get("enter")

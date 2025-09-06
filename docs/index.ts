@@ -22,7 +22,8 @@ const wrapper = LaxDiv({
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",
-    pointerEvents: "auto"
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   },
   children: [ChatHistory(), ChatInput()]
 })
