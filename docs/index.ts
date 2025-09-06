@@ -1,13 +1,18 @@
-import { Lax, LaxDiv, ChatInput, ChatHistory } from "vibeshift"
+import { Lax, LaxDiv, ChatInput, ChatHistory, ChatSend } from "vibeshift"
 
 export type Message = { from: string, text: string }
 
 export type VibeShiftState = {
   messages: Message[]
+  textBuffer: string
+  justSent: boolean // TODO tech debt
 }
 
-const lax = Lax<VibeShiftState>({
-  messages: []
+// TODO shouldn't be global
+export const app = Lax<VibeShiftState>({
+  messages: [],
+  textBuffer: "",
+  justSent: false
 })
 
 const wrapper = LaxDiv({
@@ -27,8 +32,8 @@ const wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  children: [ChatHistory(), ChatInput()]
+  children: [ChatHistory(), ChatInput(), ChatSend()]
   // children: [ChatHistory()]
 })
 
-lax.append(wrapper)
+app.append(wrapper)
