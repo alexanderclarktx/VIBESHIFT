@@ -59,9 +59,11 @@ var LaxDiv = (props) => {
 var lax = Lax({});
 var textInput = LaxDiv({
   state: {
-    text: "hello world"
+    text: "hello world",
+    opened: false
   },
   style: {
+    alignItems: "center",
     border: "2px solid black",
     borderRadius: "8px",
     bottom: "100px",
@@ -69,9 +71,15 @@ var textInput = LaxDiv({
     transform: "translate(-50%)",
     width: "90%",
     height: "5%",
-    wordBreak: "break-all"
+    wordBreak: "break-all",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    fontFamily: "Courier New",
+    fontSize: "20px",
+    textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
+    pointerEvents: "none"
   },
-  update: (_, state) => {
+  update: () => {
     textInput.e.textContent = textInput.state.text;
     console.log(textInput.state);
   }
