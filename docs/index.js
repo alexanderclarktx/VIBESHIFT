@@ -121,9 +121,7 @@ var ChatInput = () => {
       border: "2px solid black",
       borderRadius: "8px",
       bottom: "0%",
-      left: "50%",
-      transform: "translate(-50%)",
-      width: "100%",
+      width: "84%",
       minHeight: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
@@ -137,15 +135,44 @@ var ChatInput = () => {
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
+      if (lax.state.justSent) {
+        e.value = "";
+        lax.state.justSent = false;
+        return;
+      }
       if (enter && !enter.hold) {
         const { value } = e;
         if (value)
           lax.state.messages.push({ from: "user", text: e.value });
         e.value = "";
       }
+      lax.state.textBuffer = e.value;
     }
   }, true);
   return chatInput;
+};
+var ChatSend = () => {
+  const send = LaxDiv({
+    state: {},
+    style: {
+      border: "2px solid blue",
+      borderRadius: "8px",
+      bottom: "0%",
+      width: "10%",
+      right: "0%",
+      minHeight: "5.5%"
+    },
+    callbacks: {
+      onPointerDown: () => {
+        const { textBuffer } = app.state;
+        if (textBuffer) {
+          app.state.messages.push({ from: "user", text: textBuffer });
+          app.state.justSent = true;
+        }
+      }
+    }
+  });
+  return send;
 };
 // src/ChatHistory.ts
 var UserChatBubble = (msg) => {
@@ -181,7 +208,7 @@ var ChatHistory = () => {
     style: {
       border: "2px solid green",
       borderRadius: "8px",
-      width: "100%",
+      width: "99%",
       height: "100%",
       display: "flex",
       flex: 0.9,
@@ -206,8 +233,10 @@ var ChatHistory = () => {
   return chatHistory;
 };
 // docs/index.ts
-var lax = Lax({
-  messages: []
+var app = Lax({
+  messages: [],
+  textBuffer: "",
+  justSent: false
 });
 var wrapper = LaxDiv({
   state: {},
@@ -225,6 +254,9 @@ var wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  children: [ChatHistory(), ChatInput()]
+  children: [ChatHistory(), ChatInput(), ChatSend()]
 });
-lax.append(wrapper);
+app.append(wrapper);
+export {
+  app
+};

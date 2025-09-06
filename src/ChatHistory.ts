@@ -41,7 +41,7 @@ export const ChatHistory = () => {
     style: {
       border: "2px solid green",
       borderRadius: "8px",
-      width: "100%",
+      width: "99%",
       height: "100%",
       display: "flex",
       flex: 0.9,
