@@ -32,5 +32,11 @@ export const LaxDiv = <S extends {}>(props: LaxElementProps<LaxDiv<S>>, input: b
     if (onPointerOut) div.onpointerout = onPointerOut
   }
 
-  return { e: div, update: props.update, state: props.state, callbacks: props.callbacks }
+  return {
+    e: div,
+    update: props.update,
+    state: props.state,
+    callbacks: props.callbacks,
+    children: props.children ?? []
+  }
 }

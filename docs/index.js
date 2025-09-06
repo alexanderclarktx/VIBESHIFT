@@ -22,6 +22,11 @@ var Lax = (state) => {
     }
     for (const element of lax.elements) {
       element.update?.(element.e, element.state);
+      if (element.children) {
+        for (const child of element.children) {
+          child.update?.(child.e, child.state);
+        }
+      }
     }
   };
   requestAnimationFrame(update);
@@ -55,7 +60,13 @@ var LaxDiv = (props, input = false) => {
     if (onPointerOut)
       div.onpointerout = onPointerOut;
   }
-  return { e: div, update: props.update, state: props.state, callbacks: props.callbacks };
+  return {
+    e: div,
+    update: props.update,
+    state: props.state,
+    callbacks: props.callbacks,
+    children: props.children ?? []
+  };
 };
 // src/lax/KeyBuffer.ts
 var KeyBuffer = (b) => {
@@ -110,6 +121,7 @@ var ChatInput = () => {
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text;
+      console.log("abc");
     },
     callbacks: {
       onPointerDown: () => {
@@ -124,4 +136,15 @@ var ChatInput = () => {
 var lax = Lax({
   messages: []
 });
-lax.append(ChatInput());
+var wrapper = LaxDiv({
+  state: {},
+  style: {
+    position: "absolute",
+    width: "96%",
+    height: "96%",
+    left: "50%",
+    transform: "translate(-50%)"
+  },
+  children: [ChatInput()]
+});
+lax.append(wrapper);

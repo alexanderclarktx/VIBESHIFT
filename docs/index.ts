@@ -11,4 +11,20 @@ const lax = Lax<VibeShiftState>({
   messages: []
 })
 
-lax.append(ChatInput())
+const wrapper = LaxDiv({
+  state: {},
+  style: {
+    position: "absolute",
+    width: "96%",
+    height: "96%",
+    left: "50%",
+    // bottom: "%",
+    transform: "translate(-50%)"
+  },
+  children: [ ChatInput()]
+})
+
+// const chatInput = ChatInput()
+// wrapper.e.append(chatInput.e)
+
+lax.append(wrapper)

@@ -8,7 +8,8 @@ export type LaxElement<E extends HTMLElement = HTMLElement, S extends {} = {}> =
     onPointerDown?: () => void
     onPointerOver?: () => void
     onPointerOut?: () => void
-  }
+  },
+  children?: LaxElement[]
 }
 
 export type LaxElementProps<LE extends LaxElement> = {
@@ -19,7 +20,8 @@ export type LaxElementProps<LE extends LaxElement> = {
     onPointerDown?: () => void
     onPointerOver?: () => void
     onPointerOut?: () => void
-  }
+  },
+  children?: LaxElement[]
 }
 
 export type LaxUpdate<E extends HTMLElement, S extends {}> = (e: E, state: S) => void

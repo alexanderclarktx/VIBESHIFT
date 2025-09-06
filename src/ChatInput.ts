@@ -32,7 +32,7 @@ export const ChatInput = () => {
     },
     update: () => {
       chatInput.e.textContent = chatInput.state.text
-
+      console.log("abc")
 
     },
     callbacks: {
