@@ -14,6 +14,7 @@ export type CSS = Partial<{
   display: "block" | "inline-block" | "flex" | "inline-flex" | "none"
   flex: number | `${number} ${number} auto`
   flexDirection: "row" | "column" | "row-reverse" | "column-reverse"
+  flexShrink: 0 | 1 | 2
   float: "left" | "right" | "none"
   fontFamily: "Courier New" | "Arial"
   fontSize: `${number}px` | `${number}em`
@@ -24,7 +25,7 @@ export type CSS = Partial<{
   lineHeight: `${number}px`
   margin: `${number}px` | `${number}%` | "0 auto"
   marginBottom: `${number}px` | `${number}%` | "env(safe-area-inset-bottom)"
-  marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)"
+  marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)" | "auto"
   marginRight: `${number}px` | `${number}%` | "env(safe-area-inset-right)"
   marginTop: `${number}px` | `${number}%` | "env(safe-area-inset-top)"
   maxHeight: `${number}%` | `${number}px` | `${number}dvh`
