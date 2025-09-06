@@ -4,7 +4,7 @@ import { Lax, LaxDiv } from "vibeshift"
 type Chat = { from: string, text: string }
 
 type VibeShiftState = {
-  messages: Chat[]  
+  messages: Chat[]
 }
 
 const lax = Lax<VibeShiftState>({
@@ -24,10 +24,7 @@ const wrapper = LaxDiv({
     flexDirection: "column",
     display: "flex"
   },
-  children: [ ChatInput()]
+  children: [ChatInput()]
 })
-
-// const chatInput = ChatInput()
-// wrapper.e.append(chatInput.e)
 
 lax.append(wrapper)
