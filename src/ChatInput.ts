@@ -80,7 +80,6 @@ export const ChatSend = () => {
           state.messages.push({ from: "user", text: state.textBuffer })
           state.justSent = true
 
-          console.log("WANT TO PROMPT")
           ai.prompt(state.textBuffer, (response: string) => {
             console.log("RESPONSE", response)
           })

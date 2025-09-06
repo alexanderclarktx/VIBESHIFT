@@ -14,7 +14,6 @@ export const AI = (): AI => {
 
   return {
     prompt: async (prompt: string, callback) => {
-      console.log("prompting")
       const completion = await client.chat.completions.create({
         model: "gpt-5-mini",
         messages: [
