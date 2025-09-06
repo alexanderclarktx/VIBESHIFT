@@ -1,19 +1,17 @@
-import { XY } from "vibeshift"
-
-export type KeyMouse = { key: string, mouse: XY, aim: XY, tick: number, hold: number }
+export type KeyInfo = { key: string, hold: number }
 
 export type KeyBuffer = {
-  all: () => KeyMouse[]
-  get: (key: string) => KeyMouse | undefined
+  all: () => KeyInfo[]
+  get: (key: string) => KeyInfo | undefined
   copy: () => KeyBuffer
   clear: () => void
-  push: (km: KeyMouse) => void
+  push: (km: KeyInfo) => void
   remove: (key: string) => void
-  updateHold: (tick: number) => void
+  updateHold: () => void
 }
 
-export const KeyBuffer = (b?: KeyMouse[]): KeyBuffer => {
-  let buffer: KeyMouse[] = b ? [...b] : []
+export const KeyBuffer = (b?: KeyInfo[]): KeyBuffer => {
+  let buffer: KeyInfo[] = b ? [...b] : []
 
   return {
     all: () => [...buffer],
@@ -24,15 +22,15 @@ export const KeyBuffer = (b?: KeyMouse[]): KeyBuffer => {
     clear: () => {
       buffer = []
     },
-    push: (km: KeyMouse) => {
+    push: (km: KeyInfo) => {
       if (!buffer.find((b) => b.key === km.key)) return buffer.push(km)
     },
     remove: (key: string) => {
       buffer = buffer.filter((b) => b.key !== key)
     },
-    updateHold: (tick: number) => {
+    updateHold: () => {
       for (const b of buffer) {
-        b.hold = tick - b.tick - 1
+        b.hold += 1
       }
     }
   }

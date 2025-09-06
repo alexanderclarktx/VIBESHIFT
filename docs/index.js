@@ -1,11 +1,10 @@
 // src/lax/Lax.ts
 var Lax = (state) => {
   let ready = false;
-  const bufferDown = KeyBuffer();
-  const bufferUp = KeyBuffer();
   const lax = {
     state,
     elements: [],
+    keysDown: KeyBuffer(),
     append: (element) => {
       document.body.appendChild(element.e);
       lax.elements.push(element);
@@ -27,14 +26,27 @@ var Lax = (state) => {
       ready = true;
     }
     for (const element of lax.elements) {
-      element.update?.(element.e, element.state);
+      element.update?.(element.e, lax);
       if (element.children) {
         for (const child of element.children) {
-          child.update?.(child.e, child.state);
+          child.update?.(child.e, lax);
         }
       }
+      lax.keysDown.updateHold();
     }
   };
+  document.addEventListener("keydown", (event) => {
+    if (document.hasFocus()) {
+      let key = event.key.toLowerCase();
+      if (!lax.keysDown.get(key)) {
+        lax.keysDown.push({ key, hold: 0 });
+      }
+    }
+  });
+  document.addEventListener("keyup", (event) => {
+    const key = event.key.toLowerCase();
+    lax.keysDown.remove(key);
+  });
   requestAnimationFrame(update);
   return lax;
 };
@@ -93,9 +105,9 @@ var KeyBuffer = (b) => {
     remove: (key) => {
       buffer = buffer.filter((b2) => b2.key !== key);
     },
-    updateHold: (tick) => {
+    updateHold: () => {
       for (const b2 of buffer) {
-        b2.hold = tick - b2.tick - 1;
+        b2.hold += 1;
       }
     }
   };
@@ -119,16 +131,31 @@ var ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      whiteSpace: "pre-line"
+      whiteSpace: "pre-line",
+      touchAction: "manipulation"
     },
-    update: () => {},
+    update: (e, lax) => {
+      const enter = lax.keysDown.get("enter");
+      if (enter && !enter.hold) {
+        console.log(enter);
+        lax.state.messages.push({ from: "user", text: e.value });
+        e.value = "";
+        console.log("messages", lax.state.messages);
+      }
+    },
     callbacks: {
-      onPointerDown: () => {}
+      onPointerDown: () => {
+        console.log("POINTER DOWN");
+      }
     }
   }, true);
   return chatInput;
 };
-
+// src/ChatHistory.ts
+var ChatHistory = () => LaxDiv({
+  state: {},
+  style: {}
+});
 // docs/index.ts
 var lax = Lax({
   messages: []
@@ -144,8 +171,10 @@ var wrapper = LaxDiv({
     top: "0px",
     transform: "translate(-50%)",
     flexDirection: "column",
-    display: "flex"
+    display: "flex",
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   },
-  children: [ChatInput()]
+  children: [ChatHistory(), ChatInput()]
 });
 lax.append(wrapper);

@@ -1,17 +1,12 @@
-import { LaxDiv } from "vibeshift"
+import { VibeShiftState } from "docs"
+import { Lax, LaxDiv } from "vibeshift"
 
-type ChatInputState = {
-  // text: string,
-  // opened: boolean
-}
+type ChatInputState = {}
 
 export const ChatInput = () => {
 
   const chatInput = LaxDiv<ChatInputState>({
-    state: {
-      // text: "hello world",
-      // opened: false
-    },
+    state: {},
     style: {
       alignItems: "center",
       border: "2px solid black",
@@ -28,16 +23,21 @@ export const ChatInput = () => {
       pointerEvents: "auto",
       display: "flex",
       whiteSpace: "pre-line",
+      touchAction: "manipulation"
     },
-    update: () => {
-      // chatInput.e.textContent = chatInput.state.text
+    update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
+      const enter = lax.keysDown.get("enter")
+      if (enter && !enter.hold) {
+        console.log(enter)
 
-      // console.log(chatInput.state.text)
-      // chatInput.e.input
+        lax.state.messages.push({ from: "user", text: e.value })
+        e.value = ""
+        console.log("messages", lax.state.messages)
+      }
     },
     callbacks: {
       onPointerDown: () => {
-        // chatInput.state.opened = true
+        console.log("POINTER DOWN")
       }
     }
   }, true)

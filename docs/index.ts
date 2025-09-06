@@ -1,9 +1,8 @@
-import { ChatInput } from "src/ChatInput"
-import { Lax, LaxDiv } from "vibeshift"
+import { Lax, LaxDiv, ChatInput, ChatHistory } from "vibeshift"
 
 type Chat = { from: string, text: string }
 
-type VibeShiftState = {
+export type VibeShiftState = {
   messages: Chat[]
 }
 
@@ -22,9 +21,11 @@ const wrapper = LaxDiv({
     top: "0px",
     transform: "translate(-50%)",
     flexDirection: "column",
-    display: "flex"
+    display: "flex",
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   },
-  children: [ChatInput()]
+  children: [ChatHistory(), ChatInput()]
 })
 
 lax.append(wrapper)
