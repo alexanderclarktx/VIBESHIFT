@@ -30,22 +30,9 @@ export const ChatInput = () => {
       whiteSpace: "pre-line",
     },
     update: (_, lax) => {
-      // console.log("abc")
       const enter = lax.keysDown.get("enter")
-      // console.log(down.length)
-      if (enter) {
+      if (enter && !enter.hold) {
         console.log(enter)
-      }
-      
-      // conso
-      // chatInput.e.textContent = chatInput.state.text
-
-      // console.log(chatInput.state.text)
-      // chatInput.e.input
-    },
-    callbacks: {
-      onPointerDown: () => {
-        // chatInput.state.opened = true
       }
     }
   }, true)
