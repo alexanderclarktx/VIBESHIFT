@@ -60,6 +60,8 @@ var defaults = {
 };
 var LaxDiv = (props, input = false) => {
   const div = document.createElement(input ? "input" : "div");
+  if (props.id)
+    div.id = props.id;
   Object.assign(div.style, defaults);
   Object.assign(div.style, props.style);
   div.oncontextmenu = (e) => e.preventDefault();
@@ -122,7 +124,7 @@ var ChatInput = () => {
       borderRadius: "8px",
       bottom: "0%",
       width: "84%",
-      minHeight: "5%",
+      height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
       fontSize: "1em",
@@ -138,6 +140,7 @@ var ChatInput = () => {
       if (lax.state.justSent) {
         e.value = "";
         lax.state.justSent = false;
+        e.blur();
         return;
       }
       if (enter && !enter.hold) {
@@ -161,7 +164,7 @@ var ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      minHeight: "5.5%"
+      height: "6%"
     },
     update: (_, lax) => {
       if (!state)
@@ -238,11 +241,31 @@ var ChatHistory = () => {
   return chatHistory;
 };
 // docs/index.ts
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  const element = document.getElementById("embed-iframe");
+  const options = {
+    width: "100%",
+    height: "100px",
+    uri: "spotify:track:15uooxhgintp3YZq649IEr"
+  };
+  IFrameAPI.createController(element, options, () => {});
+};
 var app = Lax({
   messages: [],
   textBuffer: "",
   justSent: false
 });
+var spotify = LaxDiv({
+  id: "embed-iframe",
+  state: {},
+  style: {
+    width: "100%",
+    height: "100px",
+    border: "2px solid green",
+    position: "relative"
+  }
+});
+spotify.e.setAttribute("allow", "autoplay; encrypted-media;");
 var wrapper = LaxDiv({
   state: {},
   style: {
@@ -259,6 +282,6 @@ var wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  children: [ChatHistory(), ChatInput(), ChatSend()]
+  children: [spotify, ChatHistory(), ChatInput(), ChatSend()]
 });
 app.append(wrapper);

@@ -15,7 +15,7 @@ export const ChatInput = () => {
       // left: "50%",
       // transform: "translate(-50%)",
       width: "84%",
-      minHeight: "5%",
+      height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
       fontSize: "1em",
@@ -32,6 +32,7 @@ export const ChatInput = () => {
       if (lax.state.justSent) {
         e.value = ""
         lax.state.justSent = false
+        e.blur()
         return
       }
 
@@ -61,7 +62,7 @@ export const ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      minHeight: "5.5%"
+      height: "6%"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       if (!state) state = lax.state
