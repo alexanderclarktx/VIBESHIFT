@@ -29,13 +29,15 @@ const app = Lax<VibeShiftState>({
 })
 
 const spotify = LaxDiv({
-  id: "embed-iframe",
+  // id: "embed-iframe",
   state: {},
   style: {
     width: "100%",
-    height: "100px",
+    height: "200px",
     border: "2px solid green",
-    position: "relative"
+    position: "relative",
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   }
 })
 
@@ -58,8 +60,8 @@ const wrapper = LaxDiv({
     pointerEvents: "auto",
     touchAction: "manipulation"
   },
-  children: [spotify, ChatHistory(), ChatInput(), ChatSend()]
+  // children: [ChatHistory(), ChatInput(), ChatSend()]
   // children: [ChatHistory()]
 })
 
-app.append(wrapper)
+// app.append(wrapper)

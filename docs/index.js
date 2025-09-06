@@ -114,132 +114,6 @@ var KeyBuffer = (b) => {
     }
   };
 };
-// src/ChatInput.ts
-var ChatInput = () => {
-  const chatInput = LaxDiv({
-    state: {},
-    style: {
-      alignItems: "center",
-      border: "2px solid black",
-      borderRadius: "8px",
-      bottom: "0%",
-      width: "84%",
-      height: "5%",
-      wordBreak: "break-all",
-      fontFamily: "Courier New",
-      fontSize: "1em",
-      textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
-      pointerEvents: "auto",
-      display: "flex",
-      whiteSpace: "pre-line",
-      touchAction: "manipulation",
-      flexDirection: "column"
-    },
-    update: (e, lax) => {
-      const enter = lax.keysDown.get("enter");
-      if (lax.state.justSent) {
-        e.value = "";
-        lax.state.justSent = false;
-        e.blur();
-        return;
-      }
-      if (enter && !enter.hold) {
-        const { value } = e;
-        if (value)
-          lax.state.messages.push({ from: "user", text: e.value });
-        e.value = "";
-      }
-      lax.state.textBuffer = e.value;
-    }
-  }, true);
-  return chatInput;
-};
-var ChatSend = () => {
-  let state = undefined;
-  const send = LaxDiv({
-    state: {},
-    style: {
-      border: "2px solid green",
-      borderRadius: "8px",
-      bottom: "0%",
-      width: "10%",
-      right: "0%",
-      height: "6%"
-    },
-    update: (_, lax) => {
-      if (!state)
-        state = lax.state;
-    },
-    callbacks: {
-      onPointerDown: () => {
-        if (!state)
-          return;
-        if (state.textBuffer) {
-          state.messages.push({ from: "user", text: state.textBuffer });
-          state.justSent = true;
-        }
-      }
-    }
-  });
-  return send;
-};
-// src/ChatHistory.ts
-var UserChatBubble = (msg) => {
-  const div = LaxDiv({
-    state: {},
-    style: {
-      fontSize: "1em",
-      border: "2px solid black",
-      borderRadius: "8px",
-      position: "relative",
-      maxWidth: "80%",
-      display: "flex",
-      wordBreak: "break-word",
-      marginRight: "2%",
-      marginTop: "2%",
-      marginLeft: "auto",
-      flexDirection: "row-reverse",
-      flexShrink: 2,
-      paddingTop: "2px",
-      paddingBottom: "2px",
-      paddingLeft: "4px",
-      paddingRight: "4px"
-    }
-  });
-  div.e.textContent = msg.text;
-  return div;
-};
-var ChatHistory = () => {
-  let count = 0;
-  const chatHistory = LaxDiv({
-    state: {},
-    style: {
-      border: "2px solid black",
-      borderRadius: "8px",
-      width: "99%",
-      height: "100%",
-      display: "flex",
-      flex: 0.9,
-      left: "0px",
-      position: "relative",
-      alignSelf: "center",
-      flexDirection: "column",
-      overflowY: "scroll"
-    },
-    update: (_, lax) => {
-      const { messages } = lax.state;
-      if (count !== messages.length) {
-        for (let i = count;i < messages.length; i++) {
-          const bubble = UserChatBubble(messages[i]);
-          chatHistory.e.appendChild(bubble.e);
-          console.log("new", messages[i]);
-        }
-      }
-      count = messages.length;
-    }
-  });
-  return chatHistory;
-};
 // docs/index.ts
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
   const element = document.getElementById("embed-iframe");
@@ -256,13 +130,14 @@ var app = Lax({
   justSent: false
 });
 var spotify = LaxDiv({
-  id: "embed-iframe",
   state: {},
   style: {
     width: "100%",
-    height: "100px",
+    height: "200px",
     border: "2px solid green",
-    position: "relative"
+    position: "relative",
+    pointerEvents: "auto",
+    touchAction: "manipulation"
   }
 });
 spotify.e.setAttribute("allow", "autoplay; encrypted-media;");
@@ -281,7 +156,5 @@ var wrapper = LaxDiv({
     display: "flex",
     pointerEvents: "auto",
     touchAction: "manipulation"
-  },
-  children: [spotify, ChatHistory(), ChatInput(), ChatSend()]
+  }
 });
-app.append(wrapper);
