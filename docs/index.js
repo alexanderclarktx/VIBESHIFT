@@ -5591,7 +5591,7 @@ var _deployments_endpoints = new Set([
   "/images/edits"
 ]);
 // src/AI.ts
-var apiKey = "sk-" + "proj-" + "";
+var apiKey = "sk-" + "proj-" + "6t_xXGEdWcivKWrlDt9AcVXpEi2RUgokv5E5Hs2UTQSBAXQSIoNXmieVCv8WjLvmsSLB51lcAfT3BlbkFJYB5y9C0iFA4v5b65ovl_B-1_q21Wi0yS2OkqdZKbjTOl29JIqw_" + "I6QiOpkWuzn4-blxkJnxMwA";
 var AI = () => {
   const client = new OpenAI({
     dangerouslyAllowBrowser: true,
