@@ -155,7 +155,7 @@ var ChatSend = () => {
   const send = LaxDiv({
     state: {},
     style: {
-      border: "2px solid blue",
+      border: "2px solid green",
       borderRadius: "8px",
       bottom: "0%",
       width: "10%",
@@ -180,8 +180,7 @@ var UserChatBubble = (msg) => {
     state: {},
     style: {
       fontSize: "1em",
-      border: "2px solid red",
-      backgroundColor: "rgba(255, 200, 200, 0.5)",
+      border: "2px solid black",
       borderRadius: "8px",
       position: "relative",
       maxWidth: "80%",
@@ -206,7 +205,7 @@ var ChatHistory = () => {
   const chatHistory = LaxDiv({
     state: {},
     style: {
-      border: "2px solid green",
+      border: "2px solid black",
       borderRadius: "8px",
       width: "99%",
       height: "100%",

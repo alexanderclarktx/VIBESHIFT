@@ -53,7 +53,7 @@ export const ChatSend = () => {
   const send = LaxDiv({
     state: {},
     style: {
-      border: "2px solid blue",
+      border: "2px solid green",
       borderRadius: "8px",
       bottom: "0%",
       width: "10%",
