@@ -1,4 +1,4 @@
-import { Lax, LaxDiv, ChatInput } from "vibeshift"
+import { Lax, LaxDiv, ChatInput, ChatHistory } from "vibeshift"
 
 type Chat = { from: string, text: string }
 
@@ -21,9 +21,10 @@ const wrapper = LaxDiv({
     top: "0px",
     transform: "translate(-50%)",
     flexDirection: "column",
-    display: "flex"
+    display: "flex",
+    pointerEvents: "auto"
   },
-  children: [ChatInput()]
+  children: [ChatHistory(), ChatInput()]
 })
 
 lax.append(wrapper)

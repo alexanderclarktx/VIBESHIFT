@@ -1,6 +1,8 @@
 import { LaxDiv } from "vibeshift"
 
+export const ChatHistory = () => LaxDiv({
+  state: {},
+  style: {
 
-export const ChatHistory = LaxDiv({
-
+  }
 })

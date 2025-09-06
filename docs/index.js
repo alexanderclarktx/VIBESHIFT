@@ -141,12 +141,20 @@ var ChatInput = () => {
         e.value = "";
         console.log("messages", lax.state.messages);
       }
+    },
+    callbacks: {
+      onPointerDown: () => {
+        console.log("POINTER DOWN");
+      }
     }
   }, true);
   return chatInput;
 };
 // src/ChatHistory.ts
-var ChatHistory = LaxDiv({});
+var ChatHistory = () => LaxDiv({
+  state: {},
+  style: {}
+});
 // docs/index.ts
 var lax = Lax({
   messages: []
@@ -162,8 +170,9 @@ var wrapper = LaxDiv({
     top: "0px",
     transform: "translate(-50%)",
     flexDirection: "column",
-    display: "flex"
+    display: "flex",
+    pointerEvents: "auto"
   },
-  children: [ChatInput()]
+  children: [ChatHistory(), ChatInput()]
 });
 lax.append(wrapper);
