@@ -19,6 +19,13 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     append: (element: LaxElement) => {
       document.body.appendChild(element.e)
       lax.elements.push(element)
+
+      if (element.children) {
+        for (const child of element.children) {
+          lax.append(child)
+        }
+      }
+
       return true
     }
   }
@@ -43,8 +50,6 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
       }
     }
   }
-
-
 
   requestAnimationFrame(update)
 

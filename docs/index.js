@@ -9,6 +9,11 @@ var Lax = (state) => {
     append: (element) => {
       document.body.appendChild(element.e);
       lax.elements.push(element);
+      if (element.children) {
+        for (const child of element.children) {
+          lax.append(child);
+        }
+      }
       return true;
     }
   };
