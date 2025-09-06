@@ -49,7 +49,7 @@ export const ChatHistory = () => {
       position: "relative",
       alignSelf: "center",
       flexDirection: "column",
-      overflowY: "scroll",
+      overflowY: "scroll"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       const { messages } = lax.state
