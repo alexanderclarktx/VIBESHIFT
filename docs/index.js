@@ -138,6 +138,7 @@ var ChatInput = () => {
       if (enter && !enter.hold) {
         console.log(enter);
         lax.state.messages.push({ from: "user", text: e.value });
+        e.value = "";
         console.log("messages", lax.state.messages);
       }
     }

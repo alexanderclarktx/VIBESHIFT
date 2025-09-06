@@ -36,6 +36,7 @@ export const ChatInput = () => {
         console.log(enter)
 
         lax.state.messages.push({ from: "user", text: e.value })
+        e.value = ""
         console.log("messages", lax.state.messages)
       }
     }
