@@ -138,7 +138,9 @@ var ChatInput = () => {
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
       if (enter && !enter.hold) {
-        lax.state.messages.push({ from: "user", text: e.value });
+        const { value } = e;
+        if (value)
+          lax.state.messages.push({ from: "user", text: e.value });
         e.value = "";
       }
     },
@@ -157,7 +159,8 @@ var ChatBubble = (msg) => {
     style: {
       fontSize: "2em",
       border: "2px solid blue",
-      borderRadius: "8px"
+      borderRadius: "8px",
+      position: "relative"
     }
   });
   div.e.textContent = msg.text;
@@ -176,7 +179,8 @@ var ChatHistory = () => {
       flex: 0.9,
       left: "0px",
       position: "relative",
-      alignSelf: "center"
+      alignSelf: "center",
+      flexDirection: "column-reverse"
     },
     update: (_, lax) => {
       const { messages } = lax.state;

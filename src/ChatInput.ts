@@ -29,10 +29,11 @@ export const ChatInput = () => {
     update: (e: HTMLInputElement, lax: Lax<VibeShiftState>) => {
       const enter = lax.keysDown.get("enter")
       if (enter && !enter.hold) {
-        // console.log(enter)
 
-        lax.state.messages.push({ from: "user", text: e.value })
+        const { value } = e
+        if (value) lax.state.messages.push({ from: "user", text: e.value })
         e.value = ""
+
         // console.log("messages", lax.state.messages)
       }
     },

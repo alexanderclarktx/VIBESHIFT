@@ -8,6 +8,7 @@ const ChatBubble = (msg: Message) => {
       fontSize: "2em",
       border: "2px solid blue",
       borderRadius: "8px",
+      position: "relative"
       // display: "flex",
       // flex: 1
     }
@@ -33,7 +34,8 @@ export const ChatHistory = () => {
       flex: 0.9,
       left: "0px",
       position: "relative",
-      alignSelf: "center"
+      alignSelf: "center",
+      flexDirection: "column-reverse"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       const { messages } = lax.state

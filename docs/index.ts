@@ -15,7 +15,6 @@ const wrapper = LaxDiv({
   style: {
     // alignItems: "flex-end",
     position: "absolute",
-    // width: "96%",
     maxWidth: "94%",
     width: "100%",
     height: "96%",
