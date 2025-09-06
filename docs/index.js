@@ -143,11 +143,6 @@ var ChatInput = () => {
           lax.state.messages.push({ from: "user", text: e.value });
         e.value = "";
       }
-    },
-    callbacks: {
-      onPointerDown: () => {
-        console.log("POINTER DOWN");
-      }
     }
   }, true);
   return chatInput;

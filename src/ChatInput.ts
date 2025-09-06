@@ -33,13 +33,6 @@ export const ChatInput = () => {
         const { value } = e
         if (value) lax.state.messages.push({ from: "user", text: e.value })
         e.value = ""
-
-        // console.log("messages", lax.state.messages)
-      }
-    },
-    callbacks: {
-      onPointerDown: () => {
-        console.log("POINTER DOWN")
       }
     }
   }, true)
