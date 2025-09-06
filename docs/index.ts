@@ -9,7 +9,7 @@ export type VibeShiftState = {
 }
 
 // TODO shouldn't be global
-export const app = Lax<VibeShiftState>({
+const app = Lax<VibeShiftState>({
   messages: [],
   textBuffer: "",
   justSent: false

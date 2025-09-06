@@ -1,4 +1,4 @@
-import { app, VibeShiftState } from "docs"
+import { VibeShiftState } from "docs"
 import { Lax, LaxDiv } from "vibeshift"
 
 type ChatInputState = {}
@@ -50,6 +50,9 @@ export const ChatInput = () => {
 }
 
 export const ChatSend = () => {
+
+  let state: VibeShiftState | undefined = undefined
+
   const send = LaxDiv({
     state: {},
     style: {
@@ -60,13 +63,16 @@ export const ChatSend = () => {
       right: "0%",
       minHeight: "5.5%"
     },
+    update: (_, lax: Lax<VibeShiftState>) => {
+      if (!state) state = lax.state
+    },
     callbacks: {
       onPointerDown: () => {
-        const { textBuffer } = app.state
+        if (!state) return
 
-        if (textBuffer) {
-          app.state.messages.push({ from: "user", text: textBuffer })
-          app.state.justSent = true
+        if (state.textBuffer) {
+          state.messages.push({ from: "user", text: state.textBuffer })
+          state.justSent = true
         }
       }
     }
