@@ -27,19 +27,27 @@ const textInput = LaxDiv<TextInputState>({
     left: "50%",
     transform: "translate(-50%)",
     width: "90%",
-    height: "5%",
+    minHeight: "5%",
     wordBreak: "break-all",
     paddingLeft: "10px",
     paddingRight: "10px",
     fontFamily: "Courier New",
     fontSize: "20px",
     textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
-    pointerEvents: "none",
+    pointerEvents: "auto",
+    display: "flex",
   },
   update: () => {
     textInput.e.textContent = textInput.state.text
-    console.log(textInput.state)
+
+
+  },
+  callbacks: {
+    onPointerDown: () => {
+      textInput.state.opened = true
+    },
+    
   }
-})
+}, true)
 
 lax.append(textInput)

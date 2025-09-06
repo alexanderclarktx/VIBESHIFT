@@ -1,6 +1,8 @@
 // src/lax/Lax.ts
 var Lax = (state) => {
   let ready = false;
+  const bufferDown = KeyBuffer();
+  const bufferUp = KeyBuffer();
   const lax = {
     state,
     elements: [],
@@ -33,8 +35,8 @@ var defaults = {
   outline: "none",
   touchAction: "none"
 };
-var LaxDiv = (props) => {
-  const div = document.createElement("div");
+var LaxDiv = (props, input = false) => {
+  const div = document.createElement(input ? "input" : "div");
   Object.assign(div.style, defaults);
   Object.assign(div.style, props.style);
   div.oncontextmenu = (e) => e.preventDefault();
@@ -55,6 +57,32 @@ var LaxDiv = (props) => {
   }
   return { e: div, update: props.update, state: props.state, callbacks: props.callbacks };
 };
+// src/lax/KeyBuffer.ts
+var KeyBuffer = (b) => {
+  let buffer = b ? [...b] : [];
+  return {
+    all: () => [...buffer],
+    get: (key) => {
+      return buffer.find((b2) => b2.key === key);
+    },
+    copy: () => KeyBuffer(buffer),
+    clear: () => {
+      buffer = [];
+    },
+    push: (km) => {
+      if (!buffer.find((b2) => b2.key === km.key))
+        return buffer.push(km);
+    },
+    remove: (key) => {
+      buffer = buffer.filter((b2) => b2.key !== key);
+    },
+    updateHold: (tick) => {
+      for (const b2 of buffer) {
+        b2.hold = tick - b2.tick - 1;
+      }
+    }
+  };
+};
 // docs/index.ts
 var lax = Lax({});
 var textInput = LaxDiv({
@@ -70,18 +98,23 @@ var textInput = LaxDiv({
     left: "50%",
     transform: "translate(-50%)",
     width: "90%",
-    height: "5%",
+    minHeight: "5%",
     wordBreak: "break-all",
     paddingLeft: "10px",
     paddingRight: "10px",
     fontFamily: "Courier New",
     fontSize: "20px",
     textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
-    pointerEvents: "none"
+    pointerEvents: "auto",
+    display: "flex"
   },
   update: () => {
     textInput.e.textContent = textInput.state.text;
-    console.log(textInput.state);
+  },
+  callbacks: {
+    onPointerDown: () => {
+      textInput.state.opened = true;
+    }
   }
-});
+}, true);
 lax.append(textInput);

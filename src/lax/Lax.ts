@@ -1,4 +1,4 @@
-import { LaxElement } from "vibeshift"
+import { KeyBuffer, LaxElement } from "vibeshift"
 
 export type Lax<State extends {} = {}> = {
   state: State
@@ -9,6 +9,9 @@ export type Lax<State extends {} = {}> = {
 export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
 
   let ready = false
+
+  const bufferDown = KeyBuffer()
+  const bufferUp = KeyBuffer()
 
   const lax: Lax<State> = {
     state,
@@ -35,7 +38,11 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
     }
   }
 
+
+
   requestAnimationFrame(update)
 
   return lax
 }
+
+// const 
