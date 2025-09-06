@@ -123,7 +123,7 @@ var ChatInput = () => {
       border: "2px solid black",
       borderRadius: "8px",
       bottom: "0%",
-      width: "84%",
+      width: "80%",
       height: "5%",
       wordBreak: "break-all",
       fontFamily: "Courier New",
@@ -131,9 +131,9 @@ var ChatInput = () => {
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      whiteSpace: "pre-line",
       touchAction: "manipulation",
-      flexDirection: "column"
+      paddingLeft: "4px",
+      paddingRight: "4px"
     },
     update: (e, lax) => {
       const enter = lax.keysDown.get("enter");
@@ -164,7 +164,12 @@ var ChatSend = () => {
       bottom: "0%",
       width: "10%",
       right: "0%",
-      height: "6%"
+      height: "6%",
+      minHeight: "6%",
+      textAlign: "center",
+      lineHeight: "30px",
+      color: "green",
+      fontSize: "20px"
     },
     update: (_, lax) => {
       if (!state)
@@ -181,6 +186,7 @@ var ChatSend = () => {
       }
     }
   });
+  send.e.textContent = "↑";
   return send;
 };
 // src/ChatHistory.ts
@@ -241,31 +247,10 @@ var ChatHistory = () => {
   return chatHistory;
 };
 // docs/index.ts
-window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  const element = document.getElementById("embed-iframe");
-  const options = {
-    width: "100%",
-    height: "100px",
-    uri: "spotify:track:15uooxhgintp3YZq649IEr"
-  };
-  IFrameAPI.createController(element, options, () => {});
-};
 var app = Lax({
   messages: [],
   textBuffer: "",
   justSent: false
-});
-var music = LaxDiv({
-  state: {},
-  style: {
-    width: "100%",
-    height: "150px",
-    border: "2px solid green",
-    position: "relative",
-    pointerEvents: "auto",
-    touchAction: "auto",
-    zIndex: -1
-  }
 });
 var wrapper = LaxDiv({
   state: {},
@@ -273,9 +258,9 @@ var wrapper = LaxDiv({
     position: "absolute",
     maxWidth: "94%",
     width: "100%",
-    height: "calc(96% - 104px)",
+    height: "calc(96% - 110px)",
     left: "50%",
-    top: "110px",
+    top: "120px",
     right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",

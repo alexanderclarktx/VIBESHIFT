@@ -9,7 +9,7 @@ export type CSS = Partial<{
   bottom: `${number}%` | `${number}px`
   boxSizing: "border-box" | "content-box"
   clipPath: string
-  color: `#${string}`
+  color: LaxColor
   cursor: "pointer" | "default" | "not-allowed"
   display: "block" | "inline-block" | "flex" | "inline-flex" | "none"
   flex: number | `${number} ${number} auto`
@@ -22,7 +22,7 @@ export type CSS = Partial<{
   height: `${number}px` | `${number}%` | "auto" | `${number}vh` | `${number}dvh` | `calc(${string})`
   justifyContent: "center" | "flex-start" | "flex-end" | "space-between" | "space-around"
   left: `${number}%` | `${number}px` | `${number}dvh`
-  lineHeight: `${number}px`
+  lineHeight: `${number}px` | `${number}%`
   margin: `${number}px` | `${number}%` | "0 auto"
   marginBottom: `${number}px` | `${number}%` | "env(safe-area-inset-bottom)"
   marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)" | "auto"
