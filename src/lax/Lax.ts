@@ -51,8 +51,24 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
           child.update?.(child.e, child.state)
         }
       }
+
+      
     }
   }
+
+  document.addEventListener("keydown", (event) => {
+    if (document.hasFocus()) {
+      let key = event.key.toLowerCase()
+
+      // prevent defaults
+      // if (charactersPreventDefault.has(key)) event.preventDefault()
+
+      // add to buffer
+      if (!bufferDown.get(key)) {
+        bufferDown.push({ key, hold: 0 })
+      }
+    }
+  })
 
   requestAnimationFrame(update)
 
