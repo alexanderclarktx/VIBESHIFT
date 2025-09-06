@@ -1,6 +1,6 @@
 export type CSS = Partial<{
   alignItems: "center" | "flex-start" | "flex-end" | "stretch"
-  alignSelf: "flex-end"
+  alignSelf: "flex-end" | "center"
   backgroundColor: LaxColor
   border: string
   borderBottom: string

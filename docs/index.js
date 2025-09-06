@@ -170,12 +170,13 @@ var ChatHistory = () => {
     style: {
       border: "2px solid green",
       borderRadius: "8px",
-      width: "200px",
-      height: "200px",
+      width: "100%",
+      height: "100%",
       display: "flex",
       flex: 0.9,
       left: "0px",
-      position: "relative"
+      position: "relative",
+      alignSelf: "center"
     },
     update: (_, lax) => {
       const { messages } = lax.state;
@@ -199,10 +200,12 @@ var wrapper = LaxDiv({
   state: {},
   style: {
     position: "absolute",
-    width: "96%",
+    maxWidth: "94%",
+    width: "100%",
     height: "96%",
     left: "50%",
     top: "2%",
+    right: "2%",
     transform: "translate(-50%)",
     flexDirection: "column",
     display: "flex",

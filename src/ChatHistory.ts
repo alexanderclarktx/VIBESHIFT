@@ -27,12 +27,13 @@ export const ChatHistory = () => {
     style: {
       border: "2px solid green",
       borderRadius: "8px",
-      width: "200px",
-      height: "200px",
+      width: "100%",
+      height: "100%",
       display: "flex",
       flex: 0.9,
       left: "0px",
-      position: "relative"
+      position: "relative",
+      alignSelf: "center"
     },
     update: (_, lax: Lax<VibeShiftState>) => {
       const { messages } = lax.state
