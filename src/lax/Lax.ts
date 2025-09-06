@@ -22,7 +22,10 @@ export const Lax = <State extends {} = {}>(state: State): Lax<State> => {
 
       if (element.children) {
         for (const child of element.children) {
-          lax.append(child)
+          element.e.appendChild(child.e)
+
+          lax.elements.push(child)
+          // lax.append(child)
         }
       }
 

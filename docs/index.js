@@ -11,7 +11,8 @@ var Lax = (state) => {
       lax.elements.push(element);
       if (element.children) {
         for (const child of element.children) {
-          lax.append(child);
+          element.e.appendChild(child.e);
+          lax.elements.push(child);
         }
       }
       return true;
@@ -110,18 +111,17 @@ var ChatInput = () => {
       alignItems: "center",
       border: "2px solid black",
       borderRadius: "8px",
-      transform: "translate(0%)",
-      width: "94%",
+      bottom: "0%",
+      left: "50%",
+      transform: "translate(-50%)",
+      width: "100%",
       minHeight: "5%",
       wordBreak: "break-all",
-      paddingLeft: "10px",
-      paddingRight: "10px",
       fontFamily: "Courier New",
       fontSize: "20px",
       textShadow: "1px 1px 1px rgba(0, 0, 0, 0.5)",
       pointerEvents: "auto",
       display: "flex",
-      position: "relative",
       whiteSpace: "pre-line"
     },
     update: () => {
@@ -144,6 +144,7 @@ var lax = Lax({
 var wrapper = LaxDiv({
   state: {},
   style: {
+    alignItems: "flex-end",
     position: "absolute",
     width: "96%",
     height: "96%",

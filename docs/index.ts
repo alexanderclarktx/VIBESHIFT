@@ -14,6 +14,7 @@ const lax = Lax<VibeShiftState>({
 const wrapper = LaxDiv({
   state: {},
   style: {
+    alignItems: "flex-end",
     position: "absolute",
     width: "96%",
     height: "96%",
