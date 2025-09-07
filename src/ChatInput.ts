@@ -87,6 +87,12 @@ export const ChatSend = () => {
 
           ai.prompt(state.textBuffer, (response: string) => {
             const parsed = JSON.parse(response) as { song: string, artist: string, soundCloudUrl: string}
+
+            const embed = fetch("https://soundcloud.com/oembed", {
+              method: "POST",
+              body: ""
+            })
+
             console.log(parsed)
             // console.log("RESPONSE", response)
           })
