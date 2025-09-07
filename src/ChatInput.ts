@@ -5,6 +5,46 @@ type ChatInputState = {}
 
 const ai = AI()
 
+const callback = (state: VibeShiftState) => async (response: string) => {
+  try {
+    const parsed = JSON.parse(response) as { song: string, artist: string, soundCloudUrl: string }
+
+    // const embed = await fetch("https://soundcloud.com/oembed", {
+    let embed: undefined | Response
+
+    try {
+      embed = await fetch("https://soundcloud.com/oembed", {
+        method: "POST",
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: JSON.stringify({
+          format: "jsonp",
+          url: parsed.soundCloudUrl
+          // url: `https://soundcloud.com/${parsed.soundCloudUrl}`
+        })
+      })
+      console.log(embed)
+    } catch (e) {
+      console.warn("ERROR")
+    }
+
+    if (embed) {
+      console.log("EMBEED", embed)
+    }
+
+    console.log(parsed)
+    // console.log("EMBED", embed, embed.body)
+
+    state.messages.push({ from: "ai", text: `${parsed.artist} : ${parsed.song}` })
+  }
+  catch (e) {
+    // wasn't json structured, just return the text
+    state.messages.push({ from: "ai", text: response })
+    return
+  }
+}
+
 export const ChatInput = () => {
 
   const chatInput = LaxDiv<ChatInputState>({
@@ -41,9 +81,7 @@ export const ChatInput = () => {
         const { value } = e
         if (value) lax.state.messages.push({ from: "user", text: e.value })
 
-        ai.prompt(e.value, (response: string) => {
-          console.log("RESPONSE", response)
-        })
+        ai.prompt(e.value, callback(lax.state))
 
         e.value = ""
       }
@@ -85,17 +123,7 @@ export const ChatSend = () => {
           state.messages.push({ from: "user", text: state.textBuffer })
           state.justSent = true
 
-          ai.prompt(state.textBuffer, (response: string) => {
-            const parsed = JSON.parse(response) as { song: string, artist: string, soundCloudUrl: string}
-
-            const embed = fetch("https://soundcloud.com/oembed", {
-              method: "POST",
-              body: ""
-            })
-
-            console.log(parsed)
-            // console.log("RESPONSE", response)
-          })
+          ai.prompt(state.textBuffer, callback(state))
         }
       }
     }
