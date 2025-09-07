@@ -14,11 +14,15 @@ export const AI = (): AI => {
 
   return {
     prompt: async (prompt: string, callback) => {
+      console.log("prompting", prompt)
       try {
         const completion = await client.chat.completions.create({
-          model: "gpt-5-nano",
+          model: "gpt-4o-mini",
+          // response_format: { type: 'json_object' },
+          // response_format: ResponseFormatJSONObject
           messages: [
-            { content: prompt, role: "user" }
+            { content: prompt, role: "user" },
+            { content: "response format is { song: string }", role: "developer" }
           ]
         })
         if (completion?.choices[0].message.content) callback(completion.choices[0].message.content)

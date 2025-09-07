@@ -40,6 +40,11 @@ export const ChatInput = () => {
 
         const { value } = e
         if (value) lax.state.messages.push({ from: "user", text: e.value })
+
+        ai.prompt(e.value, (response: string) => {
+          console.log("RESPONSE", response)
+        })
+
         e.value = ""
       }
 

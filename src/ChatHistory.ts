@@ -57,7 +57,6 @@ export const ChatHistory = () => {
 
           const bubble = UserChatBubble(messages[i])
           chatHistory.e.appendChild(bubble.e)
-          console.log("new", messages[i])
         }
       }
 
