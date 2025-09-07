@@ -22,7 +22,7 @@ export const AI = (): AI => {
           // response_format: ResponseFormatJSONObject
           messages: [
             { content: prompt, role: "user" },
-            { content: "response format is { song: string }", role: "developer" }
+            { content: "response format is { song: string, artist: string, soundCloudUrl: string }", role: "developer" }
           ]
         })
         if (completion?.choices[0].message.content) callback(completion.choices[0].message.content)
