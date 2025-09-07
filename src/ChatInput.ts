@@ -26,20 +26,21 @@ const callback = (state: VibeShiftState) => async (response: string) => {
       })
       console.log(embed)
     } catch (e) {
-      console.warn("ERROR")
+      console.error("POST ERROR")
     }
 
     if (embed) {
-      console.log("EMBEED", embed)
+      console.log("EMBED", embed)
     }
 
     console.log(parsed)
     // console.log("EMBED", embed, embed.body)
 
-    state.messages.push({ from: "ai", text: `${parsed.artist} : ${parsed.song}` })
+    state.messages.push({ from: "ai", text: `${parsed.artist} — ${parsed.song}` })
   }
   catch (e) {
     // wasn't json structured, just return the text
+    console.error("JSON ISSUE", e)
     state.messages.push({ from: "ai", text: response })
     return
   }
