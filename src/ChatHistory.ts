@@ -2,6 +2,8 @@ import { Message, VibeShiftState } from "docs"
 import { Lax, LaxDiv } from "vibeshift"
 
 const UserChatBubble = (msg: Message) => {
+  const user = msg.from === "user"
+
   const div = LaxDiv({
     state: {},
     style: {
@@ -13,11 +15,10 @@ const UserChatBubble = (msg: Message) => {
       display: "flex",
       // left: "18%",
       wordBreak: "break-word",
-      // right: "-2%",
-      marginRight: "2%",
+      marginRight: user ? "2%" : "auto",
       marginTop: "2%",
-      marginLeft: "auto",
-      flexDirection: "row-reverse",
+      marginLeft: user ? "auto" : "2%",
+      flexDirection: msg.from === "user" ? "row-reverse" : "row",
       flexShrink: 2,
       paddingTop: "2px",
       paddingBottom: "2px",
@@ -57,7 +58,6 @@ export const ChatHistory = () => {
 
           const bubble = UserChatBubble(messages[i])
           chatHistory.e.appendChild(bubble.e)
-          console.log("new", messages[i])
         }
       }
 

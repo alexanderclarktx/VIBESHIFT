@@ -26,7 +26,7 @@ export type CSS = Partial<{
   margin: `${number}px` | `${number}%` | "0 auto"
   marginBottom: `${number}px` | `${number}%` | "env(safe-area-inset-bottom)"
   marginLeft: `${number}px` | `${number}%` | "env(safe-area-inset-left)" | "auto"
-  marginRight: `${number}px` | `${number}%` | "env(safe-area-inset-right)"
+  marginRight: `${number}px` | `${number}%` | "env(safe-area-inset-right)" | "auto"
   marginTop: `${number}px` | `${number}%` | "env(safe-area-inset-top)"
   maxHeight: `${number}%` | `${number}px` | `${number}dvh`
   maxWidth: `${number}%` | `${number}px`
