@@ -86,7 +86,9 @@ export const ChatSend = () => {
           state.justSent = true
 
           ai.prompt(state.textBuffer, (response: string) => {
-            console.log("RESPONSE", response)
+            const parsed = JSON.parse(response) as { song: string, artist: string, soundCloudUrl: string}
+            console.log(parsed)
+            // console.log("RESPONSE", response)
           })
         }
       }
